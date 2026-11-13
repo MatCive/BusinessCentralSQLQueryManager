@@ -1,0 +1,33 @@
+{
+  "id": "fd90183b-dcf1-4533-8948-6d278360f390",
+  "name": "SQL Query Manager",
+  "publisher": "MCivera",
+  "version": "0.1.0.0",
+  "brief": "Run read-only T-SQL queries on Business Central data.",
+  "description": "Write queries in T-SQL syntax and run them read-only on the data of your Business Central tenant, with results in a grid and export, as you would with SQL Server Management Studio.",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "https://github.com/MatCive/BusinessCentralSQLQueryManager",
+  "url": "https://github.com/MatCive/BusinessCentralSQLQueryManager",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "29.0.0.0",
+  "application": "29.0.0.0",
+  "idRanges": [
+    {
+      "from": 90000,
+      "to": 90099
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "18.0",
+  "target": "Cloud",
+  "features": [
+    "TranslationFile"
+  ]
+}

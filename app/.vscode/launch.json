@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Docker locale",
+      "type": "al",
+      "request": "launch",
+      "environmentType": "OnPrem",
+      "server": "http://bcserver",
+      "serverInstance": "BC",
+      "authentication": "UserPassword",
+      "tenant": "default",
+      "startupObjectId": 90000,
+      "startupObjectType": "Page",
+      "breakOnError": "All",
+      "launchBrowser": true,
+      "schemaUpdateMode": "Synchronize"
+    }
+  ]
+}

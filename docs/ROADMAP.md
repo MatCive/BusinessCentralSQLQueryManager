@@ -1,6 +1,6 @@
 # Business Central SQL Query Manager (SQM)
 
-*Roadmap, versione 0.1 del 13 novembre 2026*
+*Roadmap, versione 0.2 del 13 novembre 2026*
 
 ## Obiettivo
 
@@ -26,6 +26,9 @@ In SaaS non c'è accesso diretto al database e AL non può creare oggetti Query 
 - **Sola lettura:** le istruzioni che modificano dati (`INSERT`, `UPDATE`, `DELETE`, `MERGE`, `TRUNCATE` e simili) vengono rifiutate.
 - **Lingue:** inglese come base, traduzione italiana in XLIFF.
 - **Sviluppo:** codice scritto da Claude e pubblicato su GitHub; test sul container Docker locale.
+- **Limite sulle righe lette:** oltre al limite sul risultato, un secondo limite tecnico sulle righe lette per ogni tabella, con un messaggio chiaro quando viene superato. Il valore si fissa dopo le misure della fase 0.
+- **DECLARE:** rimandato alle funzionalità future, insieme a CTE e UNION.
+- **Test e CI:** test JavaScript eseguiti in CI a ogni push da subito, test app AL dalla fase 2.
 
 ## Architettura
 
@@ -75,6 +78,8 @@ Scopo: scegliere il motore SQL provandolo con dati reali, prima di costruirci so
 
 Risultato: motore scelto, con le misure e i motivi documentati in `docs/`.
 
+**Stato:** codice pronto, in attesa della verifica sul Docker. Dettagli e checklist in `docs/fase-0.md`.
+
 ### Fase 1: primo flusso completo
 
 - Pagina SQL Query Manager con editor di testo semplice, campo limite righe (1000) e azione Esegui.
@@ -117,13 +122,13 @@ Risultato: `SELECT * FROM Customer` funziona sul Docker.
 - Prestazioni, messaggi d'errore e guida d'uso.
 - Pacchetto `.app` da installare come PTE.
 
-## Test e CI (proposta)
+## Test e CI
 
 La test app è una seconda estensione AL che contiene solo test automatici: codeunit che chiamano le funzioni dell'app e verificano il risultato, per esempio che `[No.]` venga risolto nel campo giusto o che un Boolean diventi 0 o 1. Si eseguono sul Docker con un clic e dicono subito se una modifica ha rotto qualcosa che prima funzionava.
 
 La CI (integrazione continua) è un automatismo di GitHub: a ogni push un server di GitHub prende il codice, lo compila ed esegue i test, e segna il commit con una spunta verde o una croce rossa. Per una repository pubblica è gratuita.
 
-In questo progetto la logica più delicata (parser, traduzione T-SQL, conversione dei tipi) è in JavaScript, e i test JavaScript girano anche senza Business Central. La proposta è quindi:
+In questo progetto la logica più delicata (parser, traduzione T-SQL, conversione dei tipi) è in JavaScript, e i test JavaScript girano anche senza Business Central. Il piano è quindi:
 
 - da subito, test JavaScript eseguiti in CI a ogni push;
 - dalla fase 2, test app AL per lettura dei metadati e conversione dei tipi, eseguita sul Docker;
@@ -140,7 +145,4 @@ In questo progetto la logica più delicata (parser, traduzione T-SQL, conversion
 
 ## Punti aperti
 
-- **DECLARE:** era nella richiesta iniziale ma non nell'elenco della prima versione, quindi per ora è tra le funzionalità future. Da confermare.
-- **Limite sulle righe lette:** il limite di 1000 vale sul risultato, ma un JOIN può dover leggere tabelle intere. Proposta: un secondo limite tecnico sulle righe lette per tabella, con un messaggio chiaro quando viene superato. Il valore si fissa dopo le misure della fase 0.
-- **Motore SQL:** si sceglie alla fine della fase 0.
-- **Test e CI:** da confermare la proposta qui sopra.
+- **Motore SQL:** proposto SQLite (sql.js), corretto in tutti i casi di prova; alasql ha sbagliato tre semantiche T-SQL. Si conferma dopo la verifica sul Docker (dettagli in `docs/fase-0.md`).

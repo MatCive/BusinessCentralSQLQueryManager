@@ -1,0 +1,31 @@
+/* SQL Query Manager control add-in */
+html, body, #controlAddIn { height: 100%; margin: 0; padding: 0; overflow: hidden; }
+.sqm { display: flex; flex-direction: column; height: 100%; box-sizing: border-box; padding: 4px 2px;
+  font-family: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, sans-serif; font-size: 13px; color: #212121; }
+.sqm-toolbar { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.sqm-toolbar button { font: inherit; padding: 4px 12px; border: 1px solid #8a8886; border-radius: 2px; background: #fff; cursor: pointer; }
+.sqm-toolbar button:hover { background: #f3f2f1; }
+.sqm-toolbar button.sqm-run { background: #0f6cbd; border-color: #0f6cbd; color: #fff; }
+.sqm-toolbar button.sqm-run:hover { background: #115ea3; }
+.sqm-toolbar button:disabled { opacity: .6; cursor: default; }
+.sqm-engine { color: #605e5c; font-size: 12px; }
+.sqm-spacer { flex: 1; }
+.sqm-editor { flex: 0 0 160px; resize: vertical; min-height: 80px; box-sizing: border-box; width: 100%; padding: 8px;
+  font-family: Consolas, "Cascadia Mono", "Courier New", monospace; font-size: 13px; line-height: 1.4;
+  border: 1px solid #c8c6c4; border-radius: 2px; tab-size: 4; }
+.sqm-editor:focus { outline: none; border-color: #0f6cbd; }
+.sqm-status { min-height: 18px; margin: 6px 0 2px; color: #605e5c; font-size: 12px; }
+.sqm-msg { padding: 6px 8px; margin: 2px 0; border-radius: 2px; }
+.sqm-error { background: #fde7e9; color: #a4262c; }
+.sqm-warning { background: #fff4ce; color: #5c4800; }
+.sqm-info { background: #dff6dd; color: #0b5a08; }
+.sqm-error-text { color: #a4262c; }
+.sqm-result { flex: 1; overflow: auto; border: 1px solid #edebe9; }
+.sqm-empty { padding: 16px; color: #8a8886; }
+.sqm-grid { border-collapse: collapse; font-size: 12px; white-space: nowrap; }
+.sqm-grid th, .sqm-grid td { padding: 3px 8px; border-bottom: 1px solid #edebe9; border-right: 1px solid #f3f2f1; text-align: left; }
+.sqm-grid th { position: sticky; top: 0; background: #f3f2f1; font-weight: 600; z-index: 1; }
+.sqm-grid tbody tr:hover { background: #f5f9fd; }
+.sqm-grid td.sqm-num { text-align: right; font-variant-numeric: tabular-nums; }
+.sqm-grid .sqm-rownum { color: #a19f9d; text-align: right; background: #faf9f8; }
+.sqm-null { color: #a19f9d; font-style: italic; }

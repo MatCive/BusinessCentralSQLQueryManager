@@ -1,0 +1,8 @@
+{
+  "folders": [
+    { "name": "app (AL)", "path": "app" },
+    { "name": "addin (JavaScript)", "path": "addin" },
+    { "name": "docs", "path": "docs" }
+  ],
+  "settings": {}
+}
