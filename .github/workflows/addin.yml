@@ -1,0 +1,28 @@
+name: Add-in tests
+
+on:
+  push:
+    paths: ['addin/**', 'app/ControlAddIn/**', '.github/workflows/addin.yml']
+  pull_request:
+    paths: ['addin/**', 'app/ControlAddIn/**', '.github/workflows/addin.yml']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: addin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: addin/package-lock.json
+      - run: npm ci
+      - name: Unit and end-to-end tests
+        run: npm test
+      - name: Bundle used by the AL app is up to date
+        run: |
+          npm run build
+          git diff --exit-code -- ../app/ControlAddIn/js/sqm.js || (echo "::error::app/ControlAddIn/js/sqm.js is out of date: run 'npm run build' in addin and commit the result." && exit 1)

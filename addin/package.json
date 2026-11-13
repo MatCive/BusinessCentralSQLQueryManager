@@ -1,0 +1,20 @@
+{
+  "name": "sqm-addin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Control add-in of Business Central SQL Query Manager: T-SQL parser, SQLite engine, editor and result grid.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test test/*.test.js",
+    "bench": "node bench/engine-compare.mjs"
+  },
+  "dependencies": {
+    "node-sql-parser": "5.4.0",
+    "sql.js": "1.16.0"
+  },
+  "devDependencies": {
+    "alasql": "4.22.1",
+    "esbuild": "^0.25.0"
+  }
+}
